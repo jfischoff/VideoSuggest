@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101107065732) do
+ActiveRecord::Schema.define(:version => 20101107070504) do
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40
@@ -27,5 +27,12 @@ ActiveRecord::Schema.define(:version => 20101107065732) do
   end
 
   add_index "users", ["state"], :name => "index_users_on_state"
+
+  create_table "videos", :force => true do |t|
+    t.string   "url"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
