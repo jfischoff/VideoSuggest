@@ -10,7 +10,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101107070504) do
+ActiveRecord::Schema.define(:version => 20101107174748) do
+
+  create_table "expected_probs", :force => true do |t|
+    t.float    "prob"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.string   "likiness"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suggested_videos", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40
@@ -31,6 +48,12 @@ ActiveRecord::Schema.define(:version => 20101107070504) do
   create_table "videos", :force => true do |t|
     t.string   "url"
     t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "viewings", :force => true do |t|
+    t.datetime "view_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
