@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
     administrator :boolean, :default => false
     timestamps
   end
+  
+  has_many :viewings, :dependent => :destroy
+  has_many :expected_probs, :dependent => :destroy
 
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that

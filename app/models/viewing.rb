@@ -4,9 +4,13 @@ class Viewing < ActiveRecord::Base
 
   fields do
     view_date :datetime
+    rating enum_string(:like, :dislike, :unrated)
     timestamps
   end
 
+  belongs_to :user
+  belongs_to :video
+  
   # --- Permissions --- #
 
   def create_permitted?

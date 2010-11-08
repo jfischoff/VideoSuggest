@@ -10,21 +10,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101107174748) do
+ActiveRecord::Schema.define(:version => 20101108020901) do
 
   create_table "expected_probs", :force => true do |t|
     t.float    "prob"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "video_id"
   end
+
+  add_index "expected_probs", ["user_id"], :name => "index_expected_probs_on_user_id"
+  add_index "expected_probs", ["video_id"], :name => "index_expected_probs_on_video_id"
 
   create_table "ratings", :force => true do |t|
     t.string   "likiness"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "video_id"
   end
 
+  add_index "ratings", ["user_id"], :name => "index_ratings_on_user_id"
+  add_index "ratings", ["video_id"], :name => "index_ratings_on_video_id"
+
   create_table "suggested_videos", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "expected_prob_id"
+  end
+
+  add_index "suggested_videos", ["expected_prob_id"], :name => "index_suggested_videos_on_expected_prob_id"
+  add_index "suggested_videos", ["user_id"], :name => "index_suggested_videos_on_user_id"
+
+  create_table "unwatched_videos", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -56,6 +76,14 @@ ActiveRecord::Schema.define(:version => 20101107174748) do
     t.datetime "view_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "rating_id"
+    t.integer  "video_id"
+    t.string   "rating"
   end
+
+  add_index "viewings", ["rating_id"], :name => "index_viewings_on_rating_id"
+  add_index "viewings", ["user_id"], :name => "index_viewings_on_user_id"
+  add_index "viewings", ["video_id"], :name => "index_viewings_on_video_id"
 
 end

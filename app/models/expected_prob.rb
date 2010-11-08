@@ -6,6 +6,9 @@ class ExpectedProb < ActiveRecord::Base
     prob :float
     timestamps
   end
+  
+  belongs_to :user
+  belongs_to :video
 
   # --- Permissions --- #
 

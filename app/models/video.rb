@@ -7,6 +7,9 @@ class Video < ActiveRecord::Base
     title :string
     timestamps
   end
+  
+  has_many :viewings, :dependent => :destroy
+  has_many :expected_probs, :dependent => :destroy
 
   # --- Permissions --- #
 

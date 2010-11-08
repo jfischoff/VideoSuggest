@@ -1,10 +1,12 @@
-class SuggestedVideo < ActiveRecord::Base
+class UnwatchedVideo < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
     timestamps
   end
+
+  attr_accessor :url, :video, :user
 
   # --- Permissions --- #
 
