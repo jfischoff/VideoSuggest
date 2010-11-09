@@ -16,15 +16,18 @@
   </old-page>
 </extend>
 
+<!-- change the viewing tag to poly make it work with music, images, etc -->
+<!-- I need to make this work with ajaxly to get the top item from the unwatched
+    data base. to do that I will need to make some javascript and then I can make a 
+    tag I think that by default has that script on it on long ready onclick etc 
+    attributes and I can just place it on the page and pass in the user id -->
+
 <def tag="youtube">
-	<!--<div>youtube video #{this.to_s}</div> -->
-	<card param/> 
+	<% videoId = this.url.split("=")[1] %>
+	<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/#{videoId}" frameborder="0"></iframe>    
 </def>
 
 <def tag="carosel">
-	<ul>
-		<li repeat>
-			<youtube param/>
-    	</li>
-    </ul>
+	<youtube:video/>
+    <editor:rating/>
 </def>

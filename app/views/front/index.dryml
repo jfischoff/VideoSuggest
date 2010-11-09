@@ -31,14 +31,19 @@
     	<% unwatchedProbs << eProb unless viewedVideos.include?(eProb.video) %>
     	<%}%>
     	<% sortedProbs = unwatchedProbs.sort_by{|x| x.prob } %>
-    	<% potentialViewings = sortedProbs.collect{|x| %>
-    	<%   Viewing.new{|v| %>
-    	<%     v.video = x.video %>
-    	<%     v.user = x.user %>
+        <% topProb = sortedProbs[0] %>
+        <% potentialViewing = nil %>
+        <% if topProb %>
+    	<%   potentialViewing = Viewing.new{|v| %>
+    	<%     v.video = topProb.video %>
+    	<%     v.user = topProb.user %>
     	<%	   v.rating = :unrated } %>
-    	<%}%>
-    	
-    	<carosel with="&potentialViewings"/>
+        <%   potentialViewing.save %>
+        <%end%>
+
+    	<if with="&potentialViewing">
+        	<carosel with="&potentialViewing"/>
+       </if>
     	
     	
     	

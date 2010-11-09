@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101108020901) do
+ActiveRecord::Schema.define(:version => 20101109173919) do
 
   create_table "expected_probs", :force => true do |t|
     t.float    "prob"
